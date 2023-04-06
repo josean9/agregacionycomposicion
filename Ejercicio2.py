@@ -21,13 +21,22 @@ class Yin: pass
 class Yang: 
     def __del__(self): 
         print("Yang destruido") 
-class Paco:
+class soldado():
+    def __init__(self, nombre):
+        self.nombre = nombre
+    def __str__(self):
+        return self.nombre
     def __del__(self):
-        print("Paco destruido")
- 
+        print("Se ha destruido al soldado {}".format(self.nombre))
 yin = Yin() 
 yang = Yang() 
-paco = Paco()
-yin.yang = yang 
-yin.paco = paco
-print(paco)
+ 
+soldado1 = soldado("Martin")
+print(soldado1.__del__())
+soldado2 = soldado("Salim")
+print(soldado1)
+
+
+print("""yang es destruido ya que el metodo __del__ de la clase Yang es activado 
+tras crear el objeto yang de la clase Yang
+ """)
