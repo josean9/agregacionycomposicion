@@ -8,18 +8,34 @@
 Una vez definidas estas entidades, imagine que su programa es una película estadounidense 
 de catástrofes, en la que se destruye New York. Implemente este evento para que todas 
 las entidades del juego tengan en cuenta las consecuencias de este cataclismo."""
-class Ciudad():
-    def __init__(self, nombreCiudad):
-        self.nombreCiudad = nombreCiudad
-        self.edificios = []
-class Empresa(Ciudad):
-    def __init__(self, nombreCiudad, nombreEmpresa):
-        super().__init__(nombreCiudad)
-        self.nombreEmpresa = nombreEmpresa
-        self.edificios = super().edificios
-        self.empleados = []
-ciudad1= Ciudad("New York")
-ciudad1.edificios.append("A")
-empresa1 = Empresa("New York", "YooHoo!")
-"""class Edificio():
-class Empleado():"""
+class Empleado():
+    def __init__(self, nombre):
+        self.nombre = nombre
+    
+    def __str__(self):
+        return self.nombre
+class Edificio():
+    def __init__(self, nombre, ciudad, empleados=[]):
+        self.nombre = nombre
+        self.ciudad = ciudad
+        self.empleados = empleados
+    def __del__(self):
+        print("Se ha destruido el edificio {}".format(self.nombre))
+        for empleado in self.empleados:
+            
+            print(empleado.__del__)
+        del self
+    def __str__(self):
+        return self.nombre
+class Empresa():
+    def __init__(self, nombre, edificios=[]):
+        self.nombre = nombre
+        self.edificios = edificios
+    def __del__(self):
+        print("Se ha destruido la empresa {}".format(self.nombre))
+        for edificio in self.edificios:
+            
+            print(edificio.__del__())
+        del self
+    def __str__(self):
+        return self.nombre
