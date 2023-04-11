@@ -21,7 +21,11 @@ class Proteccion(Enum):
     PERSIANA = "PERSIANA"
     ESTOR = "ESTOR"
 class Cristal():
-    pass
+    def __init__(self, ancho, proteccion):
+        self.ancho = ancho
+        self.proteccion = Proteccion(proteccion.upper())
+        if self.proteccion != Proteccion.ESTOR and self.proteccion != Proteccion.PERSIANA:
+            raise ValueError("La proteccion debe ser persiana o estor")
 class Pared():
     def __init__(self, orientacion):
         orientacion = Orientacion(orientacion.upper())
@@ -41,6 +45,12 @@ class Ventana():
         self.pared.masVentanas(self)
     def __str__(self):
         return "Ventana en {}".format(self.pared)
+class ParedCortina(Pared,Cristal):
+    def __init__(self, orientacion, ancho, proteccion):
+        Pared.__init__(self, orientacion)
+        Cristal.__init__(self, ancho, proteccion)
+    def __str__(self):
+        return "ParedCortina {}".format(self.orientacion)
 class Casa():
     def __init__(self, paredes):
         self.paredes = paredes
